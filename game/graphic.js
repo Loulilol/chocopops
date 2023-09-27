@@ -26,7 +26,7 @@ function init()
     ground = new Ground(0xffffff, WIDTH, HEIGHT, 10);
     
     player1 = new Player("player1", 0xffff00, new THREE.Vector2(50, 0), 0);
-    enemy = new Player ("enemy", 0xffffff, new THREE.Vector2(Math.random()*400-200, Math.random()*400-200), 0)
+    enemy = new Player ("enemy", 0xffffff, new THREE.Vector2(Math.random()*400-150, Math.random()*400-150), 0)
     scene.add(player1.graphic);
     scene.add(enemy.graphic);
 
