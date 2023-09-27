@@ -53,6 +53,16 @@ function bullet_collision()
         }
     }
 
+    for (var i = 0; i < player1.bullets.length; i++)
+    {
+        if (Math.abs(player1.bullets[i].position.x - enemy.position.x) <= 20 && Math.abs(player1.bullets[i].position.y - enemy.position.y) <= 20) {
+            scene.remove(player1.bullets[i]);
+            player1.bullets.splice(i, 1);
+            scene.remove(enemy.graphic);
+            i--;
+        }
+    }
+
 }
 
 function player_collision()
@@ -94,7 +104,7 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
-           player1.dead();
+            player1.dead();
         }
     }
 
