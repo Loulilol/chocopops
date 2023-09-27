@@ -59,6 +59,23 @@ function bullet_collision()
             scene.remove(player1.bullets[i]);
             player1.bullets.splice(i, 1);
             scene.remove(enemy.graphic);
+            enemy = new Player ("enemy", 0xffffff, new THREE.Vector2(Math.random()*400-200, Math.random()*400-200), 0)
+            scene.add(enemy.graphic)
+            i--;
+        }
+    }
+
+    for (var i = 0; i < enemy.bullets.length; i++)
+    {
+        if (Math.abs(enemy.bullets[i].position.x - player1.position.x) <= 20 && Math.abs(enemy.bullets[i].position.y - player1.position.y) <= 20) {
+            scene.remove(enemy.bullets[i]);
+            enemy.bullets.splice(i, 1);
+            if (player1.life == 1) {
+                player1.dead()
+            }
+            else {
+                player1.life -= 1;
+            }
             i--;
         }
     }
@@ -99,12 +116,19 @@ function player_falling()
         var mtileX = (element[0] + sizeOfTileX) | 0;
         var mtileY = (element[1] + sizeOfTileY) | 0;
 
-        if ((x > tileX)
-            && (x < mtileX)
-            && (y > tileY) 
-            && (y < mtileY))
+        if ((x > tileX - sizeOfTileX / 2)
+            && (x < mtileX - sizeOfTileX / 2)
+            && (y > tileY - sizeOfTileY / 2) 
+            && (y < mtileY - sizeOfTileX / 2))
         {
-            player1.dead();
+            if (player1.life == 1) {
+                player1.dead()
+            }
+            else {
+                player1.life -= 1;
+                player1.position.x = 50;
+                player1.position.x = 0;
+            }
         }
     }
 
